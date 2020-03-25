@@ -35,66 +35,67 @@ if err == nil {
 
 To create the client instance use:
 
-#### `swdClient = ServerWatchdogClient.create(options);`
+#### `swdClient, err := swc.Create(options)`
 
 ##### `options`
 
-###### `options.host`
+###### `options.Host`
 
 Specifies the server host address.
 
-###### `options.port`
+###### `options.Port`
 
 Specifies the server port.
 
-###### `options.useSsl`
+###### `options.UseSsl`
 
 Indicates if the connection to server must use a secure channel.
 
-###### `options.apiKey`
+###### `options.ApiKey`
 
 Sets the key used to access the server. This is intended to be secret. The key must match the string configured in the server configuration.
 
-###### `options.defaultChannel`
+###### `options.DefaultChannel`
 
 Sets the default channel to use when a channel is not specified on notification methods. Read the server documentation for details about channels.
 
-###### `options.timeout` (optional)
+###### `options.TimeoutMs` (optional)
 
 Establishes the maximum time to use when sending messages to the server in millisecond units. A default value of ten (10) seconds is used if this option is not specified.
 
 ## Methods
 
-###### `swdClient.error(message[, channel])`
+###### `swdClient.Error(message, channel)`
 
-Sends an error message to the server using the specified or default channel.
+Sends an error message to the server using the specified or default channel (if channel is empty).
 
-Returns a promise to indicate when delivery completes.
+Returns nil or an error.
 
-###### `swdClient.warn(message[, channel])`
+###### `swdClient.Warn(message, channel)`
 
-Sends a warning message to the server using the specified or default channel.
+Sends a warning message to the server using the specified or default channel (if channel is empty).
 
-Returns a promise to indicate when delivery completes.
+Returns nil or an error.
 
-###### `swdClient.info(message[, channel])`
+###### `swdClient.Info(message, channel)`
 
-Sends an information message to the server using the specified or default channel.
+Sends an information message to the server using the specified or default channel (if channel is empty).
 
-Returns a promise to indicate when delivery completes.
+Returns nil or an error.
 
-###### `swdClient.processWatch(pid, name[, severity[, channel]])`
+###### `swdClient.ProcessWatch(pid, name, severity[, channel)`
 
-Informs the server to monitor the specified process. `severity` can be `error`, `warn` or `info`. If not specified, `error` is used.
+Informs the server to monitor the specified process. `severity` can be `error`, `warn` or `info`. If empty, `error` is used.
 
-If the process is killed or exits with an exit code different than zero, the server will send the proper notification to the specified or default channel.
+If the process is killed or exits with an exit code different than zero, the server will send the proper notification to the specified or default channel (if channel is empty).
 
-Returns a promise to indicate when delivery completes.
+Returns nil or an error.
 
-###### `swdClient.processUnwatch(pid[, channel])`
+###### `swdClient.ProcessUnwatch(pid, channel)`
 
 Informs the server to stop monitoring the specified process.
-Returns a promise to indicate when delivery completes.
+
+Returns nil or an error.
 
 ## License
 
