@@ -1,12 +1,12 @@
 /*
-Golang library for interacting with the Server monitoring tool.
-
-Source code and other details for the project are available at GitHub:
-
-	https://github.com/randlabs/server-watchdog-go
-
-More usage please see README.md and tests.
-*/
+ * Golang library for interacting with the Server monitoring tool.
+ *
+ * Source code and other details for the project are available at GitHub:
+ *
+ * https://github.com/randlabs/server-watchdog-go
+ *
+ * More usage please see README.md and tests.
+ */
 
 package server_watchdog_go
 
@@ -184,6 +184,8 @@ func (s *ServerWatcherClient) ProcessUnwatch(pid int, channel string) error {
 	_, err = s.sendRequest("process/unwatch", payloadBytes,  false)
 	return err
 }
+
+//------------------------------------------------------------------------------
 
 func (s *ServerWatcherClient) notify(message string, channel string, severity string) error {
 	var payload notifyJSON
